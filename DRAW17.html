@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Drawing App</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
+
+        <!--jQuery UI south-street theme(green)-->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css">
+
+        <!--custom style-->
+        <link rel="stylesheet" href="style.css">
+		    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>LEARNING FOR KIDS</title>
+	</head>
+  <body style="background-color:powderblue;">
+    <h6>LEARNING FOR KIDS</h6>
+<div class="fixed-left">
+  <div class="collapse" id="navbarToggleExternalContent">
+  <nav class="navbar navbar-dark bg-dark">
+  <form class="form-inline">
+	<a href="DRAW.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTERS</button></a>
+	<a href="DRAW1.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER A</button></a>
+	<a href="DRAW2.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER B</button></a>
+	<a href="DRAW3.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER C</button></a>
+	<a href="DRAW4.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER D</button></a>
+	<a href="DRAW5.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER E</button></a>
+	<a href="DRAW6.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER F</button></a>
+	<a href="DRAW7.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER G</button></a>
+	<a href="DRAW8.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER H</button></a>
+	<a href="DRAW9.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER I</button></a>
+	<a href="DRAW10.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER J</button></a>
+	<a href="DRAW11.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER K</button></a>
+	<a href="DRAW12.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER L</button></a>
+	<a href="DRAW13.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER M</button></a>
+	<a href="DRAW14.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER N</button></a>
+	<a href="DRAW15.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER O</button></a>
+	<a href="DRAW16.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER P</button></a>
+	<a href="DRAW17.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER Q</button></a>
+	<a href="DRAW18.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER R</button></a>
+	<a href="DRAW19.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER S</button></a>
+	<a href="DRAW20.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER T</button></a>
+	<a href="DRAW21.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER U</button></a>
+	<a href="DRAW22.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER V</button></a>
+	<a href="DRAW23.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER W</button></a>
+	<a href="DRAW24.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER X</button></a>
+	<a href="DRAW25.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER Y</button></a>
+	<a href="DRAW26.html"> <button class="btn btn-outline-success" type="button">TRACE THE LETTER Z</button></a>
+	
+	
+    </div>
+  </div>
+    </form>
+</nav>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
+<script type="text/javascript">
+    // Variables for referencing the canvas and 2dcanvas context
+    var canvas,ctx;
+
+    // Variables to keep track of the mouse position and left-button status 
+    var mouseX,mouseY,mouseDown=0;
+
+    // Variables to keep track of the touch position
+    var touchX,touchY;
+
+    // Keep track of cycling through different hues each time a dot is drawn
+    var hue=0;
+
+    // Draws a dot at a specific position on the supplied canvas name
+    // Parameters are: A canvas context, the x position, the y position, the size of the dot
+    function drawLabel(ctx,x,y,size) {
+	// Instead of using RGB (red/green/blue) format for the drawing colour, since we're cycling through
+	// hue values, it makes more sense to use HSLA, which is Hue, Saturation, Luminence
+	// We can use fixed values for Saturation, Luminence and alpha, and just use the Hue value from our hue variable.
+        sat=100; lum=50; a=255;
+
+        // Select a fill style
+        ctx.fillStyle = "hsla("+hue+","+sat+"%,"+lum+"%,"+(a/255)+")";
+
+        // Draw a filled circle
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI*2, true); 
+        ctx.closePath();
+        ctx.fill();
+
+	// Update the hue - increase the "2" value here for a faster cycle through the different colours
+	hue+=2;
+
+	// Go back to the first hue if we've reached the end of the hue range
+	if (hue>360) 
+	 hue=0;
+    } 
+
+    // Clear the canvas context using the canvas width and height
+    function clearCanvas(canvas,ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Keep track of the mouse button being pressed and draw a dot at current location
+    function sketchpad_mouseDown() {
+        mouseDown=1;
+        drawLabel(ctx,mouseX,mouseY,10);
+    }
+
+    // Keep track of the mouse button being released
+    function sketchpad_mouseUp() {
+        mouseDown=0;
+    }
+
+    // Keep track of the mouse position and draw a dot if mouse button is currently pressed
+    function sketchpad_mouseMove(e) { 
+        // Update the mouse co-ordinates when moved
+        getMousePos(e);
+
+        // Draw a dot if the mouse button is currently being pressed
+        if (mouseDown==1) {
+            drawLabel(ctx,mouseX,mouseY,10);
+        }
+    }
+
+    // Get the current mouse position relative to the top-left of the canvas
+    function getMousePos(e) {
+        if (!e)
+            var e = event;
+
+        if (e.offsetX) {
+            mouseX = e.offsetX;
+            mouseY = e.offsetY;
+        }
+        else if (e.layerX) {
+            mouseX = e.layerX;
+            mouseY = e.layerY;
+        }
+     }
+
+    // Draw something when a touch start is detected
+    function sketchpad_touchStart() {
+        // Update the touch co-ordinates
+        getTouchPos();
+
+        drawLabel(ctx,touchX,touchY,10);
+
+        // Prevents an additional mousedown event being triggered
+        event.preventDefault();
+    }
+
+    // Draw something and prevent the default scrolling when touch movement is detected
+    function sketchpad_touchMove(e) { 
+        // Update the touch co-ordinates
+        getTouchPos(e);
+
+        // During a touchmove event, unlike a mousemove event, we don't need to check if the touch is engaged, since there will always be contact with the screen by definition.
+        drawLabel(ctx,touchX,touchY,10); 
+
+        // Prevent a scrolling action as a result of this touchmove triggering.
+        event.preventDefault();
+    }
+
+    // Get the touch position relative to the top-left of the canvas
+    // When we get the raw values of pageX and pageY below, they take into account the scrolling on the page
+    // but not the position relative to our target div. We'll adjust them using "target.offsetLeft" and
+    // "target.offsetTop" to get the correct values in relation to the top left of the canvas.
+    function getTouchPos(e) {
+        if (!e)
+            var e = event;
+
+        if(e.touches) {
+            if (e.touches.length == 1) { // Only deal with one finger
+                var touch = e.touches[0]; // Get the information for finger #1
+                touchX=touch.pageX-touch.target.offsetLeft;
+                touchY=touch.pageY-touch.target.offsetTop;
+            }
+        }
+    }
+
+
+    // Set-up the canvas and add our event handlers after the page has loaded
+    function init() {
+        // Get the specific canvas element from the HTML document
+        canvas = document.getElementById('sketchpad');
+
+        // If the browser supports the canvas tag, get the 2d drawing context for this canvas
+        if (canvas.getContext)
+            ctx = canvas.getContext('2d');
+
+        // Check that we have a valid context to draw on/with before adding event handlers
+        if (ctx) {
+            // React to mouse events on the canvas, and mouseup on the entire document
+            canvas.addEventListener('mousedown', sketchpad_mouseDown, false);
+            canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
+            window.addEventListener('mouseup', sketchpad_mouseUp, false);
+
+            // React to touch events on the canvas
+            canvas.addEventListener('touchstart', sketchpad_touchStart, false);
+            canvas.addEventListener('touchmove', sketchpad_touchMove, false);
+        }
+    }
+</script>
+
+<style>
+/* Some CSS styling */
+#sketchpadapp {
+    /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.leftside {
+    float:left;
+    width:220px;
+    height:200px;
+    background-color:skyblue;
+    padding:10px;
+    border-radius:4px;
+}
+.rightside {
+    float:left;
+    margin-left:10px;
+}
+#sketchpad {
+    float:left;
+    height:500px;
+    width:400px;
+    border:2px solid #888;
+    border-radius:4px;
+    position:relative; /* Necessary for correct mouse co-ords in Firefox */
+    background-image:url(Q.jpg);
+    cursor: pointer;
+}
+#clearbutton {
+    font-size: 15px;
+    padding: 10px;
+    -webkit-appearance: none;
+    background: #eee;
+    border: 1px solid #888;
+}
+</style>
+</head>
+		    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+	
+
+        <!-- jQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <!-- jQuery UI-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+        <!--javascript-->
+        <script src="javascript.js">
+		
+        </script>
+			<script src="https://code.responsivevoice.org/responsivevoice.js?key=rs1wqcDI"></script>
+
+    </body>
+	  <script>
+setTimeout(responsiveVoice.speak("TRACE THE LETTER Q"),100);
+</script>
+<br><br>
+<body onload="init()">
+    <div id="sketchpadapp">
+        <div class="leftside">
+             Touch the screen to make a paint  .<br/><br/>
+             Trace the letter by tapping or dragging.<br/><br/>
+             <input type="submit" value="Clear Sketchpad" id="clearbutton" onclick="clearCanvas(canvas,ctx);">
+        </div>
+        <div class="rightside">
+            <canvas id="sketchpad" height="500" width="400">
+            </canvas>
+        </div>
+    </div>
+</body>
+</html>
+
